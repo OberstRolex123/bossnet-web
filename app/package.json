@@ -9,6 +9,7 @@
     "preview": "vite preview --host 0.0.0.0 --port 5173"
   },
   "dependencies": {
+    "marked": "^16.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
