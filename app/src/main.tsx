@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import ReactDOM from "react-dom/client";
+import "./index.css";
 import "./y2k-styles.css";
 
 type Item = { key: string; label: string; badge?: string };
@@ -95,6 +96,7 @@ function App() {
         </nav>
 
         <main className="y2k-content">
+		    <div className="p-4 bg-cyan-500 text-white rounded-xl mb-4">Tailwind v4 ✅</div>
           <h1>Bossnet Netzwerkparty · Y2K EDITION</h1>
           <p>Transparentes Hover-Highlight mit Neon-Glow, glänzende Buttons & blinkende Badges – wie 1999.</p>
 

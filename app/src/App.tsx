@@ -117,6 +117,8 @@ export default function BossnetRetro1999() {
               BOSS.net V<span className="text-cyan-300">2k25</span>
             </div>
             <div className="text-[11px] text-cyan-200/80 tracking-widest">Netzwerkparty · Geocities Vibes</div>
+			<div className="p-4 bg-cyan-500 text-white rounded-xl">Tailwind v4 ✅</div>
+
           </div>
 
           <div
@@ -213,6 +215,7 @@ export default function BossnetRetro1999() {
                 </ul>
               </Panel>
             </section>
+            <div className="p-4 bg-cyan-500 text-white rounded-xl">Tailwind v4 ✅</div>
 
             <div className="mt-10 retro-font text-[11px] text-cyan-200/70">
               <span className="font-black">Tipp:</span> Wenn dir der Glow zu stark ist, kann ich einen "Lite"-Schalter einbauen, der die Effekte abschwächt.

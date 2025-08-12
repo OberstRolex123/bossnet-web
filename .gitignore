@@ -1,1 +1,8 @@
+# Node‑Module‑Ordner des Frontends
 /app/node_modules
+
+# Gebautes Vite‑Frontend (wird bei npm run build erzeugt)
+/app/dist
+
+# Sonstiges
+*.log
