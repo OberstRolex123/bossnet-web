@@ -2,8 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import "./y2k-styles.css";
-import pkg_marked from "marked"; // Fallback-Import für Node 18 / ältere Bundler
-const { marked } = pkg_marked;
+import { marked } from "marked"; // ✅ Korrigierter Import
 
 type Item = { key: string; label: string; badge?: string };
 
@@ -54,8 +53,8 @@ function App() {
     };
   }, [hoverIndex, activeKey]);
 
-  const [mdHtml, setMdHtml] = useState<string>("<p>Lade Inhalte…</p>");
-  const [loading, setLoading] = useState(false);
+  const [mdHtml, setMdHtml] = useState<string>("");
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -64,23 +63,30 @@ function App() {
       try {
         setLoading(true);
         setError(null);
-        const res = await fetch(`/docs/${activeKey}.md`, { cache: "no-cache" });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const text = await res.text();
-        let html = "";
-        try {
-          html = marked.parse(text);
-        } catch (parseErr) {
-          console.warn("Markdown-Parsing fehlgeschlagen, zeige Text roh:", parseErr);
-          html = `<pre>${text}</pre>`;
+        
+        const res = await fetch(`/docs/${activeKey}.md`);
+        if (!res.ok) {
+          throw new Error(`Datei nicht gefunden: ${res.status}`);
         }
-        if (!cancelled) setMdHtml(html);
+        
+        const text = await res.text();
+        const html = marked(text); // ✅ Vereinfachter Aufruf
+        
+        if (!cancelled) {
+          setMdHtml(html);
+        }
       } catch (e: any) {
-        if (!cancelled) setError("Konnte Inhalt nicht laden.");
+        console.error("Markdown-Fehler:", e);
+        if (!cancelled) {
+          setError(`Fehler: ${e.message}`);
+        }
       } finally {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) {
+          setLoading(false);
+        }
       }
     }
+    
     loadMd();
     return () => {
       cancelled = true;
@@ -149,15 +155,16 @@ function App() {
               ))}
             </ul>
           </div>
-          <div className="y2k-sidebar__footer">Best viewed in 800×600 · IE5/Netscape 4 </div>
+          <div className="y2k-sidebar__footer">Best viewed in 800×600 · IE5/Netscape 4</div>
         </nav>
 
         <main className="y2k-content">
           {loading && <p>Lade Inhalte…</p>}
           {error && (
-            <p>
-              {error} Prüfe, ob die Datei unter <code>public/docs/{activeKey}.md</code> liegt.
-            </p>
+            <div style={{ color: '#ef4444' }}>
+              <p>{error}</p>
+              <p>Prüfe, ob die Datei unter <code>public/docs/{activeKey}.md</code> liegt.</p>
+            </div>
           )}
           {!loading && !error && (
             <article
@@ -172,4 +179,3 @@ function App() {
 }
 
 ReactDOM.createRoot(document.getElementById("root")!).render(<App />);
-
