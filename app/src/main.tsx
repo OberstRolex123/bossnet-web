@@ -14,7 +14,8 @@ function App() {
       { key: "programm", label: "Programm" },
       { key: "location", label: "Location" },
       { key: "tickets", label: "Tickets", badge: "NEW" },
-      { key: "infos", label: "Infos" },
+	  { key: "faq", label: "FAQ" },
+      { key: "infos", label: "Private Lan-Party" },
     ],
     []
   );
@@ -117,7 +118,7 @@ function App() {
     <div className="y2k-wrapper">
       <div className="y2k-marquee">
         <div className="y2k-marquee__track">
-          Willkommen zur BOSS.net LAN-Party · Y2K EDITION · Bring your ICQ-Nummer · Gästebucheintrag nicht vergessen! · ✨
+          Willkommen zur BOSS.net V - LAN-Party · 2K25 EDITION · Bring your ICQ-Nummer · Gästebucheintrag nicht vergessen! · ✨
         </div>
       </div>
 

@@ -25,7 +25,7 @@ body {
 .y2k-marquee__track {
   white-space: nowrap;
   padding: 10px 0;
-  animation: marquee 14s linear infinite;
+  animation: marquee 30s linear infinite;
   font-weight: 800;
   text-shadow: 2px 2px 0 rgba(0,0,0,0.6);
 }
