@@ -4,6 +4,7 @@ import "./index.css";
 import "./y2k-styles.css";
 import { marked } from "marked";
 import Signup from "./components/Signup";
+import Participants from "./components/Participants";
 
 type Item = { key: string; label: string; badge?: string };
 
@@ -59,8 +60,8 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // <-- NEU: Anmeldung lädt KEIN Markdown
-  const isMdPage = activeKey !== "tickets";
+  // <-- NEU: Anmeldung und Teilnehmer lädt KEIN Markdown
+  const isMdPage = activeKey !== "tickets" && activeKey !== "teilnehmer";
 
   useEffect(() => {
     if (!isMdPage) {
@@ -183,8 +184,10 @@ function App() {
         <main className="y2k-content">
           {activeKey === "tickets" ? (
             <Signup />
+          ) : activeKey === "teilnehmer" ? (
+            <Participants /> 
           ) : (
-            <>
+		    <>
               {loading && <p>Lade Inhalte…</p>}
               {error && (
                 <div style={{ color: "#ef4444" }}>

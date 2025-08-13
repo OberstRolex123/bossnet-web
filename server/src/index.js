@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS registrations (
   drinks BOOLEAN NOT NULL DEFAULT false,
   guests INT NOT NULL DEFAULT 0,
   consent BOOLEAN NOT NULL DEFAULT false,
+  bezahlt INT NOT NULL DEFAULT 0,
   UNIQUE (email)
 );
 `);
@@ -78,6 +79,23 @@ app.post('/api/register', async (req, res) => {
 });
 
 app.get('/api/health', (_req, res) => res.json({ ok: true }));
+
+// Liste der Teilnehmer (nur benötigte Felder)
+app.get('/api/registrations', async (_req, res) => {
+  try {
+    const { rows } = await pool.query(`
+      SELECT id, clan_nickname, bezahlt
+      FROM registrations
+      ORDER BY created_at DESC
+      LIMIT 1000
+    `);
+    res.json(rows);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: 'Serverfehler' });
+  }
+});
+
 
 app.listen(process.env.PORT || 5177, () => {
   console.log('Server läuft auf Port', process.env.PORT || 5177);
