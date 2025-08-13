@@ -8,13 +8,20 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     allowedHosts: ['bossnet-dev.oberstrolex.synology.me'],
-    origin: 'https://bossnet-dev.oberstrolex.synology.me', // wichtig!
+    origin: 'https://bossnet-dev.oberstrolex.synology.me', // wichtig für externen Zugriff (HTTPS hinter Reverse Proxy)
     hmr: {
       host: 'bossnet-dev.oberstrolex.synology.me',
       protocol: 'wss',
       clientPort: 443,
-      // path: '/hmr' // nur nutzen, wenn du im Reverse Proxy exakt diesen Pfad für WS routest
-    }
-  }
+      // path: '/hmr' // nur nutzen, wenn dein Reverse Proxy genau diesen Pfad für WS routet
+    },
+    // ⬇️ NEU: Proxy für API-Aufrufe
+    proxy: {
+      '/api': {
+        target: 'http://api:5177', // Service-Name aus docker-compose
+        changeOrigin: true,
+      },
+    },
+  },
 })
 
