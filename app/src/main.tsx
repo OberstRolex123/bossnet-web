@@ -2,20 +2,20 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import "./y2k-styles.css";
-import { marked } from "marked"; // ✅ Korrigierter Import
+import { marked } from "marked";
 
 type Item = { key: string; label: string; badge?: string };
 
 function App() {
   const items: Item[] = useMemo(
     () => [
-      { key: "overview", label: "Übersicht" },
-      { key: "teilnehmer", label: "Teilnehmer" },
-      { key: "programm", label: "Programm" },
+      { key: "overview", label: "Home" },
+      { key: "turniere", label: "Turniere" },
       { key: "location", label: "Location" },
-      { key: "tickets", label: "Tickets", badge: "NEW" },
-	  { key: "faq", label: "FAQ" },
-      { key: "infos", label: "Private Lan-Party" },
+      { key: "tickets", label: "Anmeldung", badge: "NEW" },
+	  { key: "teilnehmer", label: "Teilnehmer" },
+      { key: "faq", label: "FAQ" },
+      { key: "infos", label: "Private Lan-Party" }
     ],
     []
   );
@@ -71,7 +71,7 @@ function App() {
         }
         
         const text = await res.text();
-        const html = marked(text); // ✅ Vereinfachter Aufruf
+        const html = marked(text);
         
         if (!cancelled) {
           setMdHtml(html);
@@ -156,7 +156,17 @@ function App() {
               ))}
             </ul>
           </div>
-          <div className="y2k-sidebar__footer">Best viewed in 800×600 · IE5/Netscape 4</div>
+          <div className="y2k-sidebar__footer">
+            <div>Best viewed in 800×600 · IE5/Netscape 4</div>
+            <div className="y2k-impressum-link">
+              <button 
+                onClick={() => setActiveKey('impressum')}
+                className="y2k-impressum-btn"
+              >
+                Impressum
+              </button>
+            </div>
+          </div>
         </nav>
 
         <main className="y2k-content">

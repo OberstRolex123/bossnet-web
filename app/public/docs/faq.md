@@ -9,10 +9,10 @@ Ja, es gibt Schlafmöglichkeiten auf deinem Sitzplatz oder unter deinem Tisch, o
 **Gibt es Internetzugang?**  
 Ja, über dein Handy!
 
-**Gibt es was zu Futtern?"
+**Gibt es was zu Futtern?**
 Vielleicht kaufen wir in alter Tradition ein paar Bleche METRO-Pizza!
 
-**Welche Verhaltensregeln gibt es?"
-Gesunder Menschenverstand und freundliches Verhalten war damals doch auch kein Thema. Also cheatet, campt, disst euch  was das Zeug und steckt einem schlafenden Teilnehmer vielleicht einen feuchten Finger ins Ohr (@MegaMuh). 
+**Welche Verhaltensregeln gibt es?**
+Gesunder Menschenverstand und freundliches Verhalten war damals doch auch kein Thema. Also cheatet, campt, disst euch  was das Zeug hält und steckt einem schlafenden Teilnehmer vielleicht einen feuchten Finger ins Ohr (@MegaMuh). 
 
 
